@@ -1,6 +1,6 @@
 node{
    stage('SCM Checkout'){
-     git 'https://github.com/DeepakDegreeze18D/my-app.git'
+     git 'https://github.com/manojsb24/my-app.git'
    }
    stage('Compile-Package'){
 
@@ -18,7 +18,7 @@ node{
    sh 'docker build -t deepakdegreeze/myweb:0.0.2 .'
    }
    stage('Docker Image Push'){
-   withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
+   withCredentials([usernameColonPassword(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
    sh "docker login -u deepakdegreeze -p ${dockerPassword}"
     }
    sh 'docker push deepakdegreeze/myweb:0.0.2'
