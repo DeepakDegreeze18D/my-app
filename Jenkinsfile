@@ -1,6 +1,6 @@
 node{
    stage('SCM Checkout'){
-     git 'https://github.com/manojsb24/my-app.git'
+     git 'https://github.com/DeepakDegreeze18D/my-app.git'
    }
    stage('Compile-Package'){
 
@@ -14,7 +14,7 @@ node{
               sh "${mvnHome}/bin/mvn sonar:sonar"
             }
         }
-   stage('Build Docker Imager'){
+   stage('Build Docker Image'){
    sh 'docker build -t deepakdegreeze/myweb:0.0.2 .'
    }
    stage('Docker Image Push'){
