@@ -18,15 +18,15 @@ node{
    sh 'docker build -t deepakdegreeze/myweb:0.0.2 .'
    }
    stage('Docker Image Push'){
-   withCredentials([usernameColonPassword(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
+   withCredentials([string(credentialsId: 'dockerPass', variable: 'dockerPassword')]) {
    sh "docker login -u deepakdegreeze -p ${dockerPassword}"
     }
    sh 'docker push deepakdegreeze/myweb:0.0.2'
    }
    stage('Nexus Image Push'){
-   sh "docker login -u admin -p admin123 43.205.101.203:8083"
-   sh "docker tag deepakdegreeze/myweb:0.0.2 43.205.101.203:8083/deepak:1.0.0"
-   sh 'docker push 43.205.101.203:8083/deepak:1.0.0'
+   sh "docker login -u admin -p admin123 35.154.100.33:8083"
+   sh "docker tag deepakdegreeze/myweb:0.0.2 35.154.100.33/deepak:1.0.0"
+   sh 'docker push 35.154.100.33/deepak:1.0.0'
    }
    stage('Remove Previous Container'){
     try{
